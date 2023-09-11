@@ -1,0 +1,39 @@
+// Singly-linked lists are already defined with this interface:
+// class ListNode<T> {
+//   ListNode(T x) {
+//     value = x;
+//   }
+//   T value;
+//   ListNode<T> next;
+// }
+
+public class ListNode<T> {
+    public T value;
+    public ListNode<T> next;
+
+    public ListNode(T x)
+    {
+        value = x;
+    }
+}
+
+public ListNode<int> Solution(ListNode<int> l, int k) {
+    ListNode<int> head = l;
+
+    while (head != null && head.value == k) {
+        head = head.next;
+    }
+
+    ListNode<int> currentNode = head;
+
+    while (currentNode != null && currentNode.next != null) {
+        if (currentNode.next.value == k) {
+            currentNode.next = currentNode.next.next;
+        }
+        else {
+            currentNode = currentNode.next;
+        }
+    }
+
+    return head;
+}
